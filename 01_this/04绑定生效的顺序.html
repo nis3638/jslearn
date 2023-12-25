@@ -1,0 +1,35 @@
+<html>
+<script>
+    function foo(msg){
+        console.log("msg:",this);
+        name = msg;
+        function aa(){};
+    }
+    const _obj = {
+        name: 'Lisa',
+        foo1: foo
+    }
+    const _obj2 = {
+        foo1: foo
+    }
+
+    foo();//this指向window
+    foo.apply(_obj);//其实就是默认变显式
+    _obj2.foo1();// _obj2
+    _obj2.foo1.apply(_obj);// _obj
+    //2 显示和隐式优先级证明
+    
+
+    //3 new和隐式优先级证明
+    var fooY = foo.apply(_obj); 
+    //_obj2.foo1 = fooY;
+    //_obj2.foo1();
+
+    //4 new和bind，由于new无法和apply、call共用
+    //先new 后bind
+    const fooCon = new foo('ggg');
+    fooCon.bind(_obj);
+    fooCon; 
+</script>
+
+</html>

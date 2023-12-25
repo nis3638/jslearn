@@ -1,0 +1,11 @@
+<html>
+    <script>
+        function Person(name){
+            console.log(this);
+            this.name = name;
+        }
+        Person();//按一般函数执行，this指向window
+        const person = new Person('Lisa');//按构造函执行时，会把this指向构造函数
+        console.log('hhhhhh')
+    </script>
+</html>
