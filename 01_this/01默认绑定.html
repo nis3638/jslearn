@@ -1,0 +1,20 @@
+<html>
+    <script>
+        // 默认绑定1
+        function foo(msg){
+            console.log('foo中的',msg,':',this)
+        }
+        // 调用1
+        foo('第一次调用'); //this指向window
+        // 调用2
+        function invoke(fnc){
+       //     fnc()
+        }
+        invoke(foo('第二次invoke(foo())'));
+        // 调用3
+        var _obj = {
+            meth: foo
+        }
+        _obj.meth('第三次调用_obj.meth'); //指向了_obj这个对象
+    </script>
+</html>

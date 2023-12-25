@@ -1,0 +1,18 @@
+<html>
+    <script>
+        // 显示绑定
+        function foo(msg){
+            console.log('foo中的',msg,':',this)
+        }
+        let _obj = {
+            name: 'Lisa'
+        }
+        // apply绑定
+        foo.apply(_obj,['apply']);
+        foo(); // foo中的this还是指向window
+        // bind绑定
+        var foob = foo.bind(_obj,'bind 绑定');
+        console.log("aaaaaaaaa");
+        foob(); // this指向_obj  
+    </script>
+</html>
