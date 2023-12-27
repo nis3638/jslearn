@@ -1,0 +1,46 @@
+<html>
+    <script>
+        var obj1 = {
+            name: 'Lisa',
+            foo: function(){
+                console.log(this)
+            },
+        }
+        var obj2 = {
+            name: 'Wuli'
+        };
+        obj2.foo = obj1.foo;
+        obj2.foo(); // obj2中调用foo，应该指向obj2
+
+        (obj2.foo = obj1.foo)() // (obj2.foo = obj1.foo)将返回foo这个独立函数，foo直接执行，this指向window
+    // 箭头函数
+        var fnn = function(name){
+            return {
+                nick: name,
+                age: 22
+            }
+        }
+        var fnn2 = name=>({nick:name,age:22})
+        console.log("fnn2:",fnn2('Lisa'));
+    // 箭头函数中的this查找规则
+    //   箭头函数本身没有this，如果使用this，则需要根据作用域链向上查找
+    // eg1：
+    var fnn3 = {
+        name: 'Oliva',
+        fooo: function(){
+            return name=>{console.log('fnn3 this:',this)}
+        }
+    }
+
+    var fnn4 = {
+        name: 'Johnson',
+        fooo: ()=>
+            name=>{console.log('fnn4 this:',this)}
+        
+    }
+    fnn3.fooo()();//this指向fnn3
+    fnn3.fooo().apply(obj2);
+    fnn4.fooo()();//this指向window
+    fnn4.fooo().apply(obj2);
+    </script>
+</html>
