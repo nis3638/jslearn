@@ -1,0 +1,24 @@
+<html>
+
+<script>    
+var person = {
+    name: 'Lisa',
+    sayname: function(){
+        console.log(this)
+    }
+}
+
+person.sayname();
+function inovke(){
+    var s = person.sayname; // 将person对象中的sayname方法拿出来赋值给s
+    s();  //独立函数执行，没有显示绑定，会绑定到window上、
+    person.sayname();  //指向person
+    (person.sayname)(); //指向person
+    (b=person.sayname)();//window
+}
+
+inovke();
+
+
+</script>
+</html>
